@@ -1,0 +1,11 @@
+# state.tf
+terraform {
+  backend "s3" {
+    bucket         = "244190102671-camilo-gallego"
+    key            = "terraform/state.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+}
+
