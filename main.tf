@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "backend_bucket" {
   }
 }
 
-resource "aws_s3_bucket" "backend_bucket" {
+resource "aws_s3_bucket" "backend_bucket-2" {
   bucket = "244190102671-camilo-gallego-2"
   tags = {
     Owner    = "milo"
