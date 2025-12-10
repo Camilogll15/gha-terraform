@@ -19,6 +19,14 @@ resource "aws_s3_bucket" "backend_bucket" {
   }
 }
 
+resource "aws_s3_bucket" "backend_bucket" {
+  bucket = "244190102671-camilo-gallego-2"
+  tags = {
+    Owner    = "milo"
+    bootcamp = "devops"
+  }
+}
+
 resource "aws_dynamodb_table" "tf_locks" {
   name         = "terraform-locks"
   billing_mode = "PAY_PER_REQUEST"
