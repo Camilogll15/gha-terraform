@@ -12,13 +12,22 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.1.7"
-      - name: terraform-init
-        run: terraform init
+      
+      # Crear backend si no existe
+      - name: setup-backend
+        run: |
+          # Temporalmente renombrar backend.tf para evitar conflicto
+          mv backend.tf backend.tf.bak || true
+          terraform init
+          terraform apply -auto-approve -target=aws_s3_bucket.backend_bucket -target=aws_dynamodb_table.tf_locks
+          # Restaurar backend.tf
+          mv backend.tf.bak backend.tf || true
+          
+      - name: terraform-init-with-backend
+        run: terraform init -force-copy
       - name: terraform-validate
         run: terraform validate
       - name: terraform-plan
         run: terraform plan -out=tfplan
       - name: terraform-apply
         run: terraform apply -auto-approve tfplan
-
-      
