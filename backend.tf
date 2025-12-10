@@ -1,4 +1,3 @@
-# state.tf
 terraform {
   backend "s3" {
     bucket         = "244190102671-camilo-gallego"
